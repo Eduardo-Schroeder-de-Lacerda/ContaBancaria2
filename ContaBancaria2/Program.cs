@@ -10,21 +10,19 @@ namespace ContaBancaria2
     {
         static void Main(string[] args)
         {
-            var conta = CriarConta();
 
-        }
-        public static Conta CriarConta()
-        {
-            Console.Write("Entre com o número da conta: ");
-            int numero = int.Parse(Console.ReadLine());
+            Conta conta = SistemaBanco.CriarConta();
+            Console.WriteLine(conta.ToString()); 
+            Console.ReadLine();
 
-            Console.Write("Entre com o nome do titular da conta: ");
-            string titular = Console.ReadLine();
+            SistemaBanco.Depositar(conta);
+            Console.WriteLine(conta.ToString());
+            Console.ReadLine();
 
-            Console.Write("Entre com o saldo inicial: ");
-            double saldo = double.Parse(Console.ReadLine());
+            SistemaBanco.Sacar(conta);
+            Console.WriteLine(conta.ToString());
+            Console.ReadLine();
 
-            return new Conta(numero, titular, saldo);
         }
     }
 }
