@@ -3,7 +3,7 @@
     class Conta
     {
         public string Numero { get; set; }
-        public double Saldo { get; set; }
+        public double Saldo { get; private set; }
         public string Titular { get; set; }
         public TipoConta Tipo { get; set; }
         public double LimiteDeSaque { get; set; }
@@ -29,6 +29,24 @@
                 LimiteDeSaque = 1000;
                 Tipo = TipoConta.Black;
             }
+        }
+
+        public Conta(string numero, string titular)
+        {
+            Numero = numero;
+            Titular = titular;
+        }
+
+        public static void Sacar(Conta conta, double saque)
+        {
+            conta.Saldo -= saque + 5;
+            SistemaBanco.AtualizarConta(conta);
+        }
+
+        public static void Depositar(Conta conta, double deposito)
+        {
+            conta.Saldo += deposito;
+            SistemaBanco.AtualizarConta(conta);
         }
 
         public override string ToString()

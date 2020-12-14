@@ -24,9 +24,8 @@ namespace ContaBancaria2
             }
             else
             {
-                saldo = 0;
+                return new Conta(numero, titular);
             }
-
             return new Conta(numero, titular, saldo);
         }
 
@@ -36,7 +35,7 @@ namespace ContaBancaria2
             Console.WriteLine("Digite o valor para depósito");
             double deposito = double.Parse(Console.ReadLine());
 
-            conta.Saldo += deposito;
+            Conta.Depositar(conta, deposito);
 
             SistemaBanco.AtualizarConta(conta);
         }
@@ -49,8 +48,7 @@ namespace ContaBancaria2
 
             if (saque <= conta.LimiteDeSaque)
             {
-                conta.Saldo -= saque + 5;
-                SistemaBanco.AtualizarConta(conta);
+                Conta.Sacar(conta, saque);
             }
             else
             {
